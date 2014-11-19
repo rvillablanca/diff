@@ -63,11 +63,13 @@ for to_copy_file in to_add:
 	if not os.path.exists(dir_name):
 		os.makedirs(dir_name)
 	shutil.copy(os.path.join(new, to_copy_file), os.path.join(dest, to_copy_file))
-	
-to_delete_file = os.path.join(dest, "to_delete.txt")
-f_delete = open(to_delete_file, "w")
-for dfile in to_delete:
-	f_delete.write(dfile + "\n")
-f_delete.close()
+
+if len(to_delete):
+	to_delete_file = os.path.join(dest, "to_delete.txt")
+	f_delete = open(to_delete_file, "w")
+	for dfile in to_delete:
+		f_delete.write(dfile + "\n")
+	f_delete.close()
+	print("Se deben eliminar los archivos descritos en", to_delete_file)
 	
 print("Listo")
