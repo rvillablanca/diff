@@ -64,7 +64,7 @@ for to_copy_file in to_add:
 		os.makedirs(dir_name)
 	shutil.copy(os.path.join(new, to_copy_file), os.path.join(dest, to_copy_file))
 
-if len(to_delete):
+if len(to_delete) > 0:
 	to_delete_file = os.path.join(dest, "to_delete.txt")
 	f_delete = open(to_delete_file, "w")
 	for dfile in to_delete:
