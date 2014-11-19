@@ -67,7 +67,7 @@ for to_copy_file in to_add:
 to_delete_file = os.path.join(dest, "to_delete.txt")
 f_delete = open(to_delete_file, "w")
 for dfile in to_delete:
-	f_delete.write(dfile)
+	f_delete.write(dfile + "\n")
 f_delete.close()
 	
 print("Listo")
