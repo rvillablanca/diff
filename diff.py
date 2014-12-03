@@ -56,7 +56,7 @@ for to_copy_file in to_replace:
 	dir_name = os.path.join(dest, os.path.dirname(to_copy_file))
 	if not os.path.exists(dir_name):
 		os.makedirs(dir_name)
-	shutil.copy(os.path.join(old, to_copy_file), os.path.join(dest, to_copy_file))
+	shutil.copy(os.path.join(new, to_copy_file), os.path.join(dest, to_copy_file))
 	
 for to_copy_file in to_add:
 	dir_name = os.path.join(dest, os.path.dirname(to_copy_file))
