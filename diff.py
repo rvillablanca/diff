@@ -46,7 +46,7 @@ for to_delete_file in to_delete:
 for found_file in old_files:
 	file_old = os.path.join(old, found_file)
 	file_new = os.path.join(new, found_file)
-	equals = filecmp.cmp(file_old, file_new)
+	equals = filecmp.cmp(file_old, file_new, False)
 	if not equals:
 		to_replace.append(found_file)
 
