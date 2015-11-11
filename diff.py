@@ -19,6 +19,8 @@ to_delete = []
 to_replace = []
 to_add = []
 
+print("Procesando...")
+
 for dirname, dirnames, filenames in os.walk(old):
 	path = os.path.relpath(dirname, old)
 	for old_filename in filenames:
@@ -37,8 +39,6 @@ for new_file in new_files:
 	if new_file not in old_files:
 		to_add.append(new_file)
 		
-print("Borrar archivos:", to_delete)
-print("Agregar archivos:", to_add)
 
 for to_delete_file in to_delete:
 	old_files.remove(to_delete_file)
@@ -49,8 +49,6 @@ for found_file in old_files:
 	equals = filecmp.cmp(file_old, file_new)
 	if not equals:
 		to_replace.append(found_file)
-		
-print("Reemplazar archivos", to_replace)
 
 for to_copy_file in to_replace:
 	dir_name = os.path.join(dest, os.path.dirname(to_copy_file))
