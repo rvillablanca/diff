@@ -42,7 +42,8 @@ for new_file in new_files:
 
 for to_delete_file in to_delete:
 	old_files.remove(to_delete_file)
-	
+
+print("Comparando...")	
 for found_file in old_files:
 	file_old = os.path.join(old, found_file)
 	file_new = os.path.join(new, found_file)
@@ -50,6 +51,7 @@ for found_file in old_files:
 	if not equals:
 		to_replace.append(found_file)
 
+print("Copiando...")
 for to_copy_file in to_replace:
 	dir_name = os.path.join(dest, os.path.dirname(to_copy_file))
 	if not os.path.exists(dir_name):
