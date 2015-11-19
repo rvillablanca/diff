@@ -19,7 +19,7 @@ to_delete = []
 to_replace = []
 to_add = []
 
-print("Procesando...")
+print("Buscando...")
 
 for dirname, dirnames, filenames in os.walk(old):
 	path = os.path.relpath(dirname, old)
@@ -43,25 +43,35 @@ for new_file in new_files:
 for to_delete_file in to_delete:
 	old_files.remove(to_delete_file)
 
-print("Comparando...")	
+print("Comparando...")
+lenn = len(old_files)
+current = 0
 for found_file in old_files:
+	current += 1
+	print(current, "/", lenn, "\r", end = "")
 	file_old = os.path.join(old, found_file)
 	file_new = os.path.join(new, found_file)
 	equals = filecmp.cmp(file_old, file_new, False)
 	if not equals:
 		to_replace.append(found_file)
 
-print("Copiando...")
+print("\nCopiando...")
+lenn = len(to_replace) + len(to_add)
+current = 0
 for to_copy_file in to_replace:
 	dir_name = os.path.join(dest, os.path.dirname(to_copy_file))
 	if not os.path.exists(dir_name):
 		os.makedirs(dir_name)
+	current += 1
+	print(current, "/", lenn, "\r", end = "")
 	shutil.copy(os.path.join(new, to_copy_file), os.path.join(dest, to_copy_file))
 	
 for to_copy_file in to_add:
 	dir_name = os.path.join(dest, os.path.dirname(to_copy_file))
 	if not os.path.exists(dir_name):
 		os.makedirs(dir_name)
+	current += 1
+	print(current, "/", lenn, "\r", end = "")
 	shutil.copy(os.path.join(new, to_copy_file), os.path.join(dest, to_copy_file))
 
 if len(to_delete) > 0:
@@ -70,6 +80,6 @@ if len(to_delete) > 0:
 	for dfile in to_delete:
 		f_delete.write(dfile + "\n")
 	f_delete.close()
-	print("Se deben eliminar los archivos descritos en", to_delete_file)
+	print("\nSe deben eliminar los archivos descritos en", to_delete_file)
 	
 print("Listo")
