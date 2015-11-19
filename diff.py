@@ -4,13 +4,24 @@ import os
 import filecmp
 import shutil
 
-if (len(argv) != 4):
+def checkvaliddir(dir):
+	exist = os.path.isdir(dir) and os.path.exists(dir)
+	if not exist:
+		print("El parámetro", dir, "es inválido, asegúrate de que exista y sea un directorio")
+	return exist
+	
+
+if len(argv) != 4:
 	print("Número de parametros incorrectos")
 	print("Uso:")
 	print(argv[0], "<old_src> <new_src> <dest_dir>")
 	exit(-1)
 
 script, old, new, dest = argv
+
+if not checkvaliddir(old) or not checkvaliddir(new) or not checkvaliddir(dest):
+	exit(-2)
+
 
 new_files = []
 old_files = []
