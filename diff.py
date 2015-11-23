@@ -93,4 +93,4 @@ if len(to_delete) > 0:
 	f_delete.close()
 	print("\nSe deben eliminar los archivos descritos en", to_delete_file)
 	
-print("Listo")
+print("\nListo")
