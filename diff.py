@@ -66,7 +66,7 @@ for found_file in old_files:
 	if not equals:
 		to_replace.append(found_file)
 
-print("\nCopiando...")
+print("Copiando...")
 lenn = len(to_replace) + len(to_add)
 #current = 0
 for to_copy_file in to_replace:
@@ -91,6 +91,6 @@ if len(to_delete) > 0:
 	for dfile in to_delete:
 		f_delete.write(dfile + "\n")
 	f_delete.close()
-	print("\nSe deben eliminar los archivos descritos en", to_delete_file)
+	print("Se deben eliminar los archivos descritos en", to_delete_file)
 	
-print("\nListo")
+print("Listo")
